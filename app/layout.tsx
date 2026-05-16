@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Roseview",
-  description: "A hotel memory companion for capturing trip stories and shareable reels.",
+  description: "A guest memory companion for luxury hotel stays.",
 };
 
 export default function RootLayout({
