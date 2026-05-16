@@ -2,7 +2,7 @@
 
 Roseview turns your best hotel memories into lasting relationships.
 
-It is a guest experience app for luxury hotels that helps travelers capture short video memories throughout their stay, uses simple back-and-forth conversation to make those memories richer, turns the moments into a shareable reel at checkout, and guides guests toward memorable amenities and nearby experiences.
+It is a guest experience app for luxury hotels that helps travelers capture short video memories throughout their stay, uses simple back-and-forth conversation to make those memories richer, and turns the moments into a shareable reel at checkout.
 
 ## Core Experience
 
@@ -10,14 +10,13 @@ It is a guest experience app for luxury hotels that helps travelers capture shor
 - **Memory prompts:** Roseview nudges guests to record short video memories during key moments of their trip.
 - **End-of-trip reel:** At checkout, Roseview plays the guest's memory videos as a simple reel preview.
 - **Social sharing:** Guests can quickly share their finished reel to Instagram or Facebook.
-- **Memory map:** Guests can discover hotel amenities and nearby recommendations designed to help them create more memorable moments.
 
 ## Current Prototype
 
 The app currently includes a simple end-to-end memory flow:
 
-1. Guests choose an amenity or nearby experience from the memory map.
-2. Roseview asks a few lightweight follow-up questions about the moment.
+1. Roseview presents a lightweight memory prompt.
+2. Roseview asks a few follow-up questions about the moment.
 3. Guests record a short browser camera video for that memory.
 4. The saved memory keeps the video metadata and conversation context together.
 5. The reel preview plays captured clips and shows the guest's answers as story context.
