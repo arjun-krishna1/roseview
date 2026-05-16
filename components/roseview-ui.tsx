@@ -99,9 +99,7 @@ export function StatusBar({ onPhoto = false, time = "9:41" }: { onPhoto?: boolea
 export function TabBar({ active, onNav }: { active: string; onNav: (id: string) => void }) {
   const tabs = [
     { id: "today", label: "Today", icon: "home" },
-    { id: "map", label: "Map", icon: "map" },
     { id: "capture", capture: true },
-    { id: "journal", label: "Journal", icon: "journal" },
     { id: "reel", label: "Reel", icon: "play" },
   ];
 
