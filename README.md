@@ -2,23 +2,38 @@
 
 Roseview turns your best hotel memories into lasting relationships.
 
-It is a guest experience app for luxury hotels that helps travelers capture short video memories throughout their stay, turns those moments into a shareable reel at checkout, and guides guests toward memorable amenities and nearby experiences.
+It is a guest experience app for luxury hotels that helps travelers capture short video memories throughout their stay, uses simple back-and-forth conversation to make those memories richer, turns the moments into a shareable reel at checkout, and guides guests toward memorable amenities and nearby experiences.
 
 ## Core Experience
 
+- **Conversational capture:** Roseview asks guests simple questions, saves the back-and-forth with each memory, and uses those answers as story context.
 - **Memory prompts:** Roseview nudges guests to record short video memories during key moments of their trip.
-- **End-of-trip reel:** At checkout, Roseview compiles the guest's memory videos into a simple recap reel.
+- **End-of-trip reel:** At checkout, Roseview plays the guest's memory videos as a simple reel preview.
 - **Social sharing:** Guests can quickly share their finished reel to Instagram or Facebook.
 - **Memory map:** Guests can discover hotel amenities and nearby recommendations designed to help them create more memorable moments.
+
+## Current Prototype
+
+The app currently includes a simple end-to-end memory flow:
+
+1. Guests choose an amenity or nearby experience from the memory map.
+2. Roseview asks a few lightweight follow-up questions about the moment.
+3. Guests record a short browser camera video for that memory.
+4. The saved memory keeps the video metadata and conversation context together.
+5. The reel preview plays captured clips and shows the guest's answers as story context.
+6. Instagram and Facebook buttons are present as visual calls to action for the sharing flow.
 
 ## Product Direction
 
 The app should feel warm, visual, and hospitality-first. The interface should use the Roseview standalone prototype as the design reference, with the main flow centered on:
 
 1. Helping guests capture memories during the stay.
-2. Showing the progress of their collected moments.
-3. Producing a polished reel at the end of the trip.
-4. Highlighting places around the property where guests can make new memories.
+2. Letting guests have a lightweight conversation about what made each moment special.
+3. Showing the progress of their collected moments.
+4. Producing a polished reel at the end of the trip.
+5. Highlighting places around the property where guests can make new memories.
+
+The simplest version of the conversation layer is a guided chat attached to each memory. Roseview asks a few follow-up questions, saves the guest's answers with the video, and uses that context later when presenting the trip reel.
 
 ## Tech Stack
 
