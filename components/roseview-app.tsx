@@ -695,7 +695,6 @@ function ConversationScreen({
 }) {
   const [lines, setLines] = useState<ConversationLine[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [textValue, setTextValue] = useState("");
   const [conversationId, setConversationId] = useState<string | null>(null);
   const lastMessageRef = useRef("");
   const agentId = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID;
@@ -774,22 +773,6 @@ function ConversationScreen({
     onNav("capture-camera");
   };
 
-  const sendTypedMessage = async () => {
-    const text = textValue.trim();
-    if (!text) {
-      return;
-    }
-
-    if (!isConnected) {
-      setError("Start the Roseview voice session before sending a typed message.");
-      return;
-    }
-
-    setLines((current) => [...current, { id: `typed-${Date.now()}`, role: "guest", text }]);
-    setTextValue("");
-    await conversation.sendUserMessage(text);
-  };
-
   return (
     <div className="screen" style={{ background: "var(--bg)" }}>
       <StatusBar />
@@ -829,9 +812,8 @@ function ConversationScreen({
           </div>
         ) : (
           <div style={{ ...cardStyle({ padding: 18, borderRadius: 18, color: "var(--ink-2)", lineHeight: 1.45 }) }}>
-            <div className="eyebrow" style={{ color: "var(--accent)", marginBottom: 8 }}>Prompt context</div>
+            <div className="eyebrow" style={{ color: "var(--accent)", marginBottom: 8 }}>Memory context</div>
             <p className="serif" style={{ fontSize: 20, color: "var(--ink)" }}>{currentItem.prompts[0] ?? "Tell me about this moment."}</p>
-            <p style={{ marginTop: 10, fontSize: 13 }}>This uses the ElevenLabs agent configured in your environment.</p>
           </div>
         )}
 
@@ -852,12 +834,6 @@ function ConversationScreen({
         </div>
         <div style={{ fontSize: 12, color: "var(--ink-3)", letterSpacing: "0.12em", textTransform: "uppercase" }}>
           {isConnected ? (conversation.isSpeaking ? "Roseview speaking" : conversation.isListening ? "Listening" : "Connected") : isConnecting ? "Connecting" : "Tap to speak"}
-        </div>
-        <div style={{ display: "flex", gap: 8, width: "100%" }}>
-          <textarea className="conversation-input" value={textValue} onChange={(event) => setTextValue(event.target.value)} placeholder="Type to the agent instead..." />
-          <button className="btn btn-primary" onClick={() => void sendTypedMessage()} style={{ alignSelf: "stretch", padding: "0 16px" }}>
-            <Icon name="arrow-right" size={16} />
-          </button>
         </div>
       </div>
     </div>

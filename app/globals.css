@@ -456,20 +456,6 @@ img {
   display: none;
 }
 
-.conversation-input {
-  width: 100%;
-  min-height: 92px;
-  resize: none;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  outline: none;
-  background: var(--surface);
-  padding: 14px 16px;
-  color: var(--ink);
-  font-size: 15px;
-  line-height: 1.45;
-}
-
 .reel-stage {
   position: absolute;
   inset: 0;
