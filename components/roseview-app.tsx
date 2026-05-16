@@ -208,6 +208,14 @@ function RoseviewShell() {
     }
   };
 
+  const navFromTabBar = (to: Screen) => {
+    if (hubScreens.includes(to)) {
+      navTab(to);
+    } else {
+      nav(to);
+    }
+  };
+
   const addMemory = (memory: Memory) => {
     setMemories((currentMemories) => [memory, ...currentMemories]);
   };
@@ -266,7 +274,7 @@ function RoseviewShell() {
         <div className={`phone ${showTabbar ? "" : "no-tabbar"}`} data-screen-label="Roseview">
           <div className="phone-screen">
             {renderScreen()}
-            {showTabbar ? <TabBar active={current} onNav={(screen) => navTab(screen as Screen)} /> : null}
+            {showTabbar ? <TabBar active={current} onNav={(screen) => navFromTabBar(screen as Screen)} /> : null}
           </div>
         </div>
       </div>
