@@ -337,24 +337,6 @@ function TodayScreen({ onNav, memories, setSelected }: { onNav: (screen: Screen)
         </div>
 
         <div className="pad-x" style={{ marginBottom: 28 }}>
-          <div style={{ ...cardStyle({ borderRadius: 24, padding: 24, position: "relative", overflow: "hidden" }) }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-              <Icon name="sparkle" size={14} stroke={0} />
-              <span className="eyebrow">A word from Roseview</span>
-            </div>
-            <p className="serif" style={{ fontSize: 24, lineHeight: 1.25, color: "var(--ink)", marginBottom: 18 }}>
-              You captured a quiet morning at The Infinity yesterday. Would you like to record a few words with Roseview now, while it is still fresh?
-            </p>
-            <div style={{ display: "flex", gap: 10 }}>
-              <button className="btn btn-accent" style={{ flex: 1 }} onClick={() => onNav("capture-conversation")}>
-                <Icon name="mic" size={16} /> Add a voice note
-              </button>
-              <button className="btn btn-ghost">Later</button>
-            </div>
-          </div>
-        </div>
-
-        <div className="pad-x" style={{ marginBottom: 28 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 16 }}>
             <h3 className="serif" style={{ fontSize: 26 }}>Held for you today</h3>
             <button style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--ink-3)" }} onClick={() => onNav("map")}>See all</button>
