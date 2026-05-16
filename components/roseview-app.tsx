@@ -43,6 +43,34 @@ type SignedUrlResponse = {
 };
 
 const hubScreens: Screen[] = ["today", "map", "journal", "reel"];
+const screens = new Set<Screen>([
+  "today",
+  "map",
+  "amenity",
+  "journal",
+  "memory-detail",
+  "capture-start",
+  "capture-conversation",
+  "capture-camera",
+  "capture-confirm",
+  "reel",
+  "share",
+  "settings",
+]);
+
+const normalizeHistoryStack = (stack: unknown): Screen[] | null => {
+  if (!Array.isArray(stack)) {
+    return null;
+  }
+
+  const normalized = stack.filter((screen): screen is Screen => screens.has(screen as Screen));
+  return normalized.length ? normalized : null;
+};
+
+const browserUrlForStack = (stack: Screen[]) => {
+  const screen = stack[stack.length - 1] ?? "today";
+  return screen === "today" ? window.location.pathname : `#${screen}`;
+};
 
 function usePhoneScale() {
   useEffect(() => {
@@ -127,9 +155,33 @@ function RoseviewShell() {
     document.documentElement.dataset.palette = palette;
   }, [palette]);
 
+  useEffect(() => {
+    window.history.replaceState({ roseview: true, stack: ["today"] }, "", browserUrlForStack(["today"]));
+
+    const handlePopState = (event: PopStateEvent) => {
+      const stack = event.state && typeof event.state === "object" ? normalizeHistoryStack((event.state as { stack?: unknown }).stack) : null;
+      setHistory(stack ?? ["today"]);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  const pushBrowserHistory = (stack: Screen[]) => {
+    window.history.pushState({ roseview: true, stack }, "", browserUrlForStack(stack));
+  };
+
+  const replaceBrowserHistory = (stack: Screen[]) => {
+    window.history.replaceState({ roseview: true, stack }, "", browserUrlForStack(stack));
+  };
+
   const nav = (to: Screen | "back", payload?: Memory) => {
     if (to === "back") {
-      setHistory((currentHistory) => (currentHistory.length > 1 ? currentHistory.slice(0, -1) : currentHistory));
+      if (history.length > 1) {
+        const nextHistory = history.slice(0, -1);
+        setHistory(nextHistory);
+        replaceBrowserHistory(nextHistory);
+      }
       return;
     }
 
@@ -137,11 +189,23 @@ function RoseviewShell() {
       setConfirmed(payload);
     }
 
-    setHistory((currentHistory) => [...currentHistory, to]);
+    const nextHistory = [...history, to];
+    setHistory(nextHistory);
+    pushBrowserHistory(nextHistory);
   };
 
   const navTab = (to: Screen) => {
-    setHistory([to]);
+    const nextHistory = [to];
+    setHistory(nextHistory);
+    pushBrowserHistory(nextHistory);
+  };
+
+  const navFromToday = (to: Screen) => {
+    if (hubScreens.includes(to)) {
+      navTab(to);
+    } else {
+      nav(to);
+    }
   };
 
   const addMemory = (memory: Memory) => {
@@ -153,7 +217,7 @@ function RoseviewShell() {
   const renderScreen = () => {
     switch (current) {
       case "today":
-        return <TodayScreen onNav={navTab} memories={memories} setSelected={setSelected} />;
+        return <TodayScreen onNav={navFromToday} memories={memories} setSelected={setSelected} />;
       case "map":
         return <MapScreen onNav={(destination) => (destination === "amenity" ? nav("amenity") : navTab(destination))} setSelected={setSelected} />;
       case "amenity":
