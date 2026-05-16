@@ -23,18 +23,6 @@ The app currently includes a simple end-to-end memory flow:
 5. The reel preview plays captured clips and shows the guest's answers as story context.
 6. Instagram and Facebook buttons are present as visual calls to action for the sharing flow.
 
-## Product Direction
-
-The app should feel warm, visual, and hospitality-first. The interface should use the Roseview standalone prototype as the design reference, with the main flow centered on:
-
-1. Helping guests capture memories during the stay.
-2. Letting guests have a lightweight conversation about what made each moment special.
-3. Showing the progress of their collected moments.
-4. Producing a polished reel at the end of the trip.
-5. Highlighting places around the property where guests can make new memories.
-
-The simplest version of the conversation layer is a guided chat attached to each memory. Roseview asks a few follow-up questions, saves the guest's answers with the video, and uses that context later when presenting the trip reel.
-
 ## Tech Stack
 
 - Next.js
