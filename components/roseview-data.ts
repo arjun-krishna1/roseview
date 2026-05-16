@@ -34,7 +34,7 @@ export type CaptureSession = {
 export const hotel = {
   name: "Rosa di Vento",
   tagline: "A Tuscan estate",
-  guest: "Eliana",
+  guest: "Grace",
   stayDay: 3,
   stayLength: 5,
   date: "Friday, 16 May",

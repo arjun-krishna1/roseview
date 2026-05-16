@@ -1118,7 +1118,7 @@ function SettingsScreen({ onNav, palette, setPalette }: { onNav: (screen: Screen
         <PageHeader onBack={() => onNav("back")} title="Your stay" />
         <div className="pad-x" style={{ paddingTop: 20 }}>
           <div className="serif" style={{ fontSize: 24, marginBottom: 8 }}>Rosa di Vento</div>
-          <div style={{ fontSize: 13, color: "var(--ink-3)", marginBottom: 24 }}>Day 3 of 5 - Suite 14 - Lina + Eliana</div>
+          <div style={{ fontSize: 13, color: "var(--ink-3)", marginBottom: 24 }}>Day 3 of 5 - Suite 14 - Lina + Grace</div>
           <div style={{ display: "flex", gap: 8, marginBottom: 24 }}>
             {palettes.map((nextPalette) => (
               <Chip key={nextPalette} active={palette === nextPalette} onClick={() => setPalette(nextPalette)}>
