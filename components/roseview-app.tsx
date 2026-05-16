@@ -5,6 +5,7 @@ import { ConversationProvider, useConversation } from "@elevenlabs/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   amenities,
+  guestProfile,
   hotel,
   initialMemories,
   nearby,
@@ -282,6 +283,106 @@ function RoseviewShell() {
   );
 }
 
+function ContinuityCard() {
+  const { lastSeen, pastStays, appliedToday, openThreads, anniversary } = guestProfile;
+  const applied = appliedToday[0];
+  const thread = openThreads[0];
+  const phuket = pastStays.find((stay) => stay.id === "phuket-2024");
+
+  return (
+    <div
+      style={{
+        ...cardStyle({
+          padding: 22,
+          borderRadius: 22,
+          background: "color-mix(in oklab, var(--accent) 6%, var(--bg))",
+          borderColor: "color-mix(in oklab, var(--accent) 22%, transparent)",
+        }),
+      }}
+    >
+      <div style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: 4 }}>
+        {lastSeen.image ? (
+          <img
+            src={lastSeen.image}
+            alt={`Last stay - ${lastSeen.property}, ${lastSeen.city}`}
+            style={{
+              width: 64,
+              height: 64,
+              borderRadius: 16,
+              objectFit: "cover",
+              flexShrink: 0,
+              boxShadow: "0 1px 6px color-mix(in oklab, var(--accent) 24%, transparent)",
+            }}
+          />
+        ) : null}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div className="eyebrow" style={{ color: "var(--accent)", marginBottom: 8 }}>
+            Welcome to {hotel.name}
+          </div>
+          <p
+            className="serif-italic"
+            style={{ fontSize: 20, lineHeight: 1.3, color: "var(--ink)", marginBottom: 8 }}
+          >
+            What we found at the {lastSeen.property} and at {phuket?.property ?? "Phuket"} - we mean to top it here.
+          </p>
+          <p style={{ fontSize: 12, color: "var(--ink-3)", lineHeight: 1.5, marginBottom: 0 }}>
+            The courtyard Cohiba in Paris. Ta Khai for the tenth. We&rsquo;re carrying those forward.
+          </p>
+        </div>
+      </div>
+
+      <div
+        style={{
+          height: 1,
+          background: "color-mix(in oklab, var(--accent) 18%, transparent)",
+          margin: "12px 0 14px",
+        }}
+      />
+
+      {applied ? (
+        <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 12 }}>
+          <span style={{ marginTop: 2, color: "var(--accent)" }}>
+            <Icon name="clock" size={14} />
+          </span>
+          <div style={{ flex: 1 }}>
+            <div className="serif" style={{ fontSize: 15, color: "var(--ink)", lineHeight: 1.2 }}>
+              {applied.label} - {applied.time}
+            </div>
+            <div style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 2 }}>{applied.detail}</div>
+          </div>
+        </div>
+      ) : null}
+
+      {thread ? (
+        <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 12 }}>
+          <span style={{ marginTop: 2, color: "var(--accent)" }}>
+            <Icon name="arrow-right" size={14} />
+          </span>
+          <div style={{ flex: 1 }}>
+            <div className="serif" style={{ fontSize: 15, color: "var(--ink)", lineHeight: 1.2 }}>
+              Still on the table
+            </div>
+            <div style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 2 }}>{thread.line}</div>
+          </div>
+        </div>
+      ) : null}
+
+      <div
+        style={{
+          marginTop: 6,
+          paddingTop: 12,
+          borderTop: "1px solid color-mix(in oklab, var(--accent) 14%, transparent)",
+          fontSize: 12,
+          color: "var(--ink-3)",
+          lineHeight: 1.45,
+        }}
+      >
+        {anniversary.date} isn&rsquo;t far - your {anniversary.yearsNext}th. {anniversary.anchor}
+      </div>
+    </div>
+  );
+}
+
 function TodayScreen({ onNav, memories, setSelected }: { onNav: (screen: Screen) => void; memories: Memory[]; setSelected: (item: Amenity | Memory) => void }) {
   const featured = amenities[0];
   const recent = memories.slice(0, 4);
@@ -293,8 +394,8 @@ function TodayScreen({ onNav, memories, setSelected }: { onNav: (screen: Screen)
         <div className="pad-x" style={{ paddingTop: 12, paddingBottom: 28 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
             <div>
-              <div className="eyebrow">Day {hotel.stayDay} of {hotel.stayLength}</div>
-              <div className="serif" style={{ fontSize: 14, marginTop: 4, color: "var(--ink-2)" }}>{hotel.date}</div>
+              <div className="eyebrow">{hotel.name} - Day {hotel.stayDay} of {hotel.stayLength}</div>
+              <div className="serif" style={{ fontSize: 14, marginTop: 4, color: "var(--ink-2)" }}>{hotel.tagline} - {hotel.date}</div>
             </div>
             <button className="btn-icon" aria-label="Menu" onClick={() => onNav("settings")}>
               <Icon name="menu" size={18} />
@@ -306,6 +407,10 @@ function TodayScreen({ onNav, memories, setSelected }: { onNav: (screen: Screen)
           <p style={{ fontSize: 15, lineHeight: 1.55, color: "var(--ink-2)", maxWidth: 320 }}>
             You have <em className="serif-italic" style={{ fontSize: 17 }}>{memories.length} memories</em> collected so far. There are two moments held for you today.
           </p>
+        </div>
+
+        <div className="pad-x" style={{ marginBottom: 28 }}>
+          <ContinuityCard />
         </div>
 
         <div className="pad-x" style={{ marginBottom: 28 }}>

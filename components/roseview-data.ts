@@ -32,8 +32,8 @@ export type CaptureSession = {
 };
 
 export const hotel = {
-  name: "Rosa di Vento",
-  tagline: "A Tuscan estate",
+  name: "Rosewood Sand Hill",
+  tagline: "Sand Hill Road, Menlo Park",
   guest: "Grace",
   stayDay: 3,
   stayLength: 5,
@@ -143,7 +143,7 @@ export const initialMemories: Memory[] = [
     title: "Morning at The Infinity",
     when: "Day 1 - 8:14 am",
     duration: "0:14",
-    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=900&auto=format&fit=crop&q=80",
+    image: "/photos/family-5.webp",
     answers: [
       { q: "Who is here with you?", a: "Just me. Lina is still asleep upstairs." },
       { q: "What does the light feel like?", a: "Warm on the left side of my face. The water is colder than I thought." },
@@ -155,7 +155,7 @@ export const initialMemories: Memory[] = [
     title: "Caruso, second course",
     when: "Day 2 - 9:32 pm",
     duration: "0:22",
-    image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&auto=format&fit=crop&q=80",
+    image: "/photos/family-2.webp",
     answers: [
       { q: "Who are you sharing the table with?", a: "Lina, and the couple from Milan we met at the pool." },
       { q: "What course will you remember?", a: "The pici with rabbit. Lorenza came out and sat with us for the next pour." },
@@ -167,8 +167,20 @@ export const initialMemories: Memory[] = [
     title: "Pienza, Saturday",
     when: "Day 3 - 9:48 am",
     duration: "0:18",
-    image: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=900&auto=format&fit=crop&q=80",
+    image: "/photos/family-3.webp",
     answers: [{ q: "Who pulled you in first?", a: "An old man selling pecorino wrapped in walnut leaves. He let us taste five." }],
+  },
+  {
+    id: "m4",
+    amenityId: "dining",
+    title: "Caruso, after the cheese course",
+    when: "Day 2 - 10:48 pm",
+    duration: "0:16",
+    image: "/photos/family-4.webp",
+    answers: [
+      { q: "Who are you sharing the table with?", a: "All four of us. The kids stayed up." },
+      { q: "What will you remember about tonight?", a: "Mario kept refilling Mark's glass and the kids started laughing too hard to eat." },
+    ],
   },
 ];
 
@@ -186,3 +198,119 @@ export const todayPrompts = [
     detail: "Table for two on the terrace.",
   },
 ];
+
+export type PastStay = {
+  id: string;
+  property: string;
+  city: string;
+  occasion: string;
+  date: string;
+  anchor: string;
+  image?: string;
+};
+
+export type OpenThread = {
+  id: string;
+  fromProperty: string;
+  line: string;
+};
+
+export type AppliedPreference = {
+  id: string;
+  label: string;
+  time: string;
+  detail: string;
+};
+
+export type GuestProfile = {
+  name: string;
+  partner: string;
+  loyaltyTier: string;
+  totalStays: number;
+  properties: number;
+  lastSeen: PastStay;
+  pastStays: PastStay[];
+  appliedToday: AppliedPreference[];
+  openThreads: OpenThread[];
+  anniversary: {
+    date: string;
+    yearsNext: number;
+    anchor: string;
+  };
+};
+
+export const guestProfile: GuestProfile = {
+  name: "Grace",
+  partner: "Mark",
+  loyaltyTier: "Rosewood Élevé",
+  totalStays: 11,
+  properties: 5,
+  lastSeen: {
+    id: "crillon-2023",
+    property: "Hôtel de Crillon",
+    city: "Paris",
+    occasion: "Long weekend",
+    date: "October 2023",
+    anchor: "Mark hasn't let us forget the Cohíba night in the courtyard.",
+    image: "/photos/family-1-thumb.webp",
+  },
+  pastStays: [
+    {
+      id: "phuket-2024",
+      property: "Rosewood Phuket",
+      city: "Phuket",
+      occasion: "10th anniversary",
+      date: "February 2024",
+      anchor: "Ta Khai still asks about you and Mark.",
+    },
+    {
+      id: "madrid-2024",
+      property: "Villa Magna",
+      city: "Madrid",
+      occasion: "Mark's 45th",
+      date: "March 2024",
+      anchor: "Amós, suckling lamb, Café Central until two.",
+    },
+    {
+      id: "crillon-2023",
+      property: "Hôtel de Crillon",
+      city: "Paris",
+      occasion: "Long weekend",
+      date: "October 2023",
+      anchor: "Cohíba Robustos, courtyard, an Armagnac to follow.",
+    },
+    {
+      id: "mansion-2023",
+      property: "Mansion on Turtle Creek",
+      city: "Dallas",
+      occasion: "A weekend in",
+      date: "May 2023",
+      anchor: "One martini at the Mansion Bar was too short.",
+    },
+  ],
+  appliedToday: [
+    {
+      id: "spa-mid-day",
+      label: "Asaya stones held",
+      time: "1:30 pm",
+      detail: "Eucalyptus, the way you like them.",
+    },
+  ],
+  openThreads: [
+    {
+      id: "phang-nga",
+      fromProperty: "Phuket",
+      line: "Phang Nga longtail — still on the table whenever you want it.",
+    },
+    {
+      id: "reims",
+      fromProperty: "Paris",
+      line: "A Reims day from the Crillon — we owe you that one.",
+    },
+  ],
+  anniversary: {
+    date: "14 February",
+    yearsNext: 12,
+    anchor: "Ta Khai remembers. There's no decision to make today.",
+  },
+};
