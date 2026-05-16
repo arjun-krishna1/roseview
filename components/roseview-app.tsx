@@ -323,10 +323,10 @@ function ContinuityCard() {
             className="serif-italic"
             style={{ fontSize: 20, lineHeight: 1.3, color: "var(--ink)", marginBottom: 8 }}
           >
-            What we found at the {lastSeen.property} and at {phuket?.property ?? "Phuket"} - we mean to top it here.
+            The courtyard dinner in Paris. Hot Stone Massages in Phuket.
           </p>
           <p style={{ fontSize: 12, color: "var(--ink-3)", lineHeight: 1.5, marginBottom: 0 }}>
-            The courtyard Cohiba in Paris. Ta Khai for the tenth. We&rsquo;re carrying those forward.
+             We&rsquo;re carrying those forward at Rosewood Sand Hill.
           </p>
         </div>
       </div>
@@ -366,19 +366,6 @@ function ContinuityCard() {
           </div>
         </div>
       ) : null}
-
-      <div
-        style={{
-          marginTop: 6,
-          paddingTop: 12,
-          borderTop: "1px solid color-mix(in oklab, var(--accent) 14%, transparent)",
-          fontSize: 12,
-          color: "var(--ink-3)",
-          lineHeight: 1.45,
-        }}
-      >
-        {anniversary.date} isn&rsquo;t far - your {anniversary.yearsNext}th. {anniversary.anchor}
-      </div>
     </div>
   );
 }
@@ -397,16 +384,12 @@ function TodayScreen({ onNav, memories, setSelected }: { onNav: (screen: Screen)
               <div className="eyebrow">{hotel.name} - Day {hotel.stayDay} of {hotel.stayLength}</div>
               <div className="serif" style={{ fontSize: 14, marginTop: 4, color: "var(--ink-2)" }}>{hotel.tagline} - {hotel.date}</div>
             </div>
-            <button className="btn-icon" aria-label="Menu" onClick={() => onNav("settings")}>
-              <Icon name="menu" size={18} />
-            </button>
           </div>
 
           <h1 className="display" style={{ fontSize: 52, marginBottom: 2 }}>Good morning,</h1>
           <h1 className="display serif-italic" style={{ fontSize: 56, color: "var(--accent)", marginBottom: 18 }}>{hotel.guest}.</h1>
           <p style={{ fontSize: 15, lineHeight: 1.55, color: "var(--ink-2)", maxWidth: 320 }}>
-            You have <em className="serif-italic" style={{ fontSize: 17 }}>{memories.length} memories</em> collected so far. There are two moments held for you today.
-          </p>
+            You have <em className="serif-italic" style={{ fontSize: 17 }}>{memories.length} memories</em> collected so far.</p>
         </div>
 
         <div className="pad-x" style={{ marginBottom: 28 }}>

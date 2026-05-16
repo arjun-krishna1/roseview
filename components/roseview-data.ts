@@ -232,11 +232,6 @@ export type GuestProfile = {
   pastStays: PastStay[];
   appliedToday: AppliedPreference[];
   openThreads: OpenThread[];
-  anniversary: {
-    date: string;
-    yearsNext: number;
-    anchor: string;
-  };
 };
 
 export const guestProfile: GuestProfile = {
@@ -291,9 +286,9 @@ export const guestProfile: GuestProfile = {
   appliedToday: [
     {
       id: "spa-mid-day",
-      label: "Asaya stones held",
+      label: "Spa and Massage Day",
       time: "1:30 pm",
-      detail: "Eucalyptus, the way you like them.",
+      detail: "Eucalyptus, just for you.",
     },
   ],
   openThreads: [
@@ -308,9 +303,4 @@ export const guestProfile: GuestProfile = {
       line: "A Reims day from the Crillon — we owe you that one.",
     },
   ],
-  anniversary: {
-    date: "14 February",
-    yearsNext: 12,
-    anchor: "Ta Khai remembers. There's no decision to make today.",
-  },
 };
