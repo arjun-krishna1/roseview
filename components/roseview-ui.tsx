@@ -110,7 +110,7 @@ export function TabBar({ active, onNav }: { active: string; onNav: (id: string) 
           return (
             <button key={tab.id} className="capture-tab" onClick={() => onNav("capture-conversation")} aria-label="Add a voice note">
               <div className="capture-btn">
-                <Icon name="camera" size={24} stroke={1.5} />
+                <Icon name="mic" size={24} stroke={1.5} />
               </div>
             </button>
           );
