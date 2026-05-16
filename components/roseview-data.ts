@@ -47,7 +47,7 @@ export const amenities: Amenity[] = [
     kind: "On property",
     location: "South terraces",
     duration: "45 min",
-    image: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=900&auto=format&fit=crop&q=80",
+    image: "/photos/vineyard-couple.png",
     palette: "#7E8E70",
     description: "Walk the rows of Sangiovese as the light goes long. Our vintner pours from the cellar barrel.",
     prompts: [
